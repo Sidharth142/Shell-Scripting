@@ -1,1 +1,39 @@
+Here's a simple README for your script:
 
+---
+
+# AWS Resource Tracker
+
+**Version**: v1
+
+This script reports the usage of various AWS resources including S3, EC2, Lambda, and IAM Users. It provides a quick summary of the resources in your AWS account.
+
+## Prerequisites
+- AWS CLI must be configured with access permissions.
+- `jq` should be installed to process JSON output.
+
+## Features
+The script performs the following tasks:
+- Lists all S3 buckets in the AWS account.
+- Lists all EC2 instances and displays their instance IDs.
+- Lists all Lambda functions.
+- Lists all IAM users.
+
+## Usage
+1. Grant execute permissions to the script:
+   ```bash
+   chmod +x aws_resource_tracker.sh
+   ```
+
+2. Run the script:
+   ```bash
+   ./aws_resource_tracker.sh | more
+   ```
+   The `| more` command lets you view the output in a paginated format.
+
+## Additional Notes
+- The script uses `set -x` to enable debug mode.
+- The `stty sane` command resets terminal settings if there are any display issues.
+- `jq` is used to filter JSON output for EC2 instance IDs.
+
+---
