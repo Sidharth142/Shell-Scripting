@@ -1,1 +1,61 @@
+# AWS Resource Listing Script
 
+**Version**: v1
+
+This script automates the process of listing resources for various AWS services in a specified region. It’s useful for quickly viewing the resources you have in your AWS account for supported services.
+
+## Supported Services
+This script supports listing resources for the following AWS services:
+1. EC2 (Elastic Compute Cloud)
+2. RDS (Relational Database Service)
+3. S3 (Simple Storage Service)
+4. CloudFront
+5. VPC (Virtual Private Cloud)
+6. IAM (Identity and Access Management)
+7. Route53
+8. CloudWatch
+9. CloudFormation
+10. Lambda
+11. SNS (Simple Notification Service)
+12. SQS (Simple Queue Service)
+13. DynamoDB
+14. EBS (Elastic Block Store)
+
+## Usage
+### Running the Script
+The script requires two inputs:
+1. **AWS Region** (e.g., `us-west-2`)
+2. **AWS Service** (e.g., `ec2`, `s3`, `lambda`, etc.)
+
+#### Example:
+```bash
+./aws_resource_list.sh us-west-2 ec2
+```
+This example lists all EC2 instances in the `us-west-2` region.
+
+### Steps:
+1. **Make the script executable** (only needed once):
+   ```bash
+   chmod +x aws_resource_list.sh
+   ```
+2. **Run the script**:
+   ```bash
+   ./aws_resource_list.sh <aws_region> <aws_service>
+   ```
+   Replace `<aws_region>` with the AWS region (e.g., `us-west-2`) and `<aws_service>` with the service name (e.g., `ec2`).
+
+## Prerequisites
+- **AWS CLI**: The AWS Command Line Interface (CLI) must be installed and configured on your machine.
+  - **Installation**: Follow the AWS CLI [installation guide](https://aws.amazon.com/cli/).
+  - **Configuration**: Run `aws configure` to set up your AWS credentials.
+- **Permissions**: Ensure that the IAM user has the necessary permissions to list resources in your AWS account.
+
+## How It Works
+1. The script checks if both region and service arguments are provided.
+2. It validates if AWS CLI is installed and configured.
+3. It lists the resources for the specified service in the given region.
+
+## Error Handling
+- If the required arguments are missing, the script provides usage instructions.
+- If the AWS CLI is not installed or configured, it will prompt you to install or configure it.
+- If an invalid service is entered, the script displays an error.
