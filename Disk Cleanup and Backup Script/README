@@ -1,1 +1,41 @@
 
+# Disk Cleanup and Backup Script
+
+## Overview
+
+This script is designed to help manage disk space by monitoring disk usage on your system. When the disk usage on any partition exceeds a set threshold, the script automatically compresses and archives files older than 30 days from that partition, then deletes the original files to free up space.
+
+## How It Works
+
+1. **Threshold Check**: The script monitors each partition on your system. If any partition’s disk usage exceeds 90%, it triggers the cleanup process.
+
+2. **File Archiving**: Files older than 30 days in the partition are compressed into a `.tar` archive (a single file that contains multiple files).
+
+3. **File Deletion**: After successfully creating the archive, the original files are deleted, freeing up disk space.
+
+4. **Email Notification**: Once the archival is completed, the script can be configured to send a notification email (if configured), informing you that the cleanup process has finished.
+
+## Script Details
+
+- **Threshold**: The disk usage threshold is set to 90%. You can adjust this by changing the `tr` variable in the script if you want a different limit.
+- **Archive Location**: Archived files are stored in a backup location, named with the partition name and date of the archive.
+
+## Prerequisites
+
+- Make sure there is a directory (e.g., `/bkup`) for storing the backup archives. Update the `$bkup` variable in the script with the correct backup path if needed.
+- Ensure the script has permission to access and modify files in the target partitions.
+- To enable email notifications, configure the system’s email service (e.g., sendmail or mailx) and add the necessary email command in the script.
+
+## Usage
+
+1. **Run the Script**: Execute the script in a terminal or set it to run at scheduled intervals (e.g., daily) using a cron job.
+2. **Monitor Free Space**: This script helps keep partitions from filling up by automatically archiving and deleting old files.
+
+## Important Notes
+
+- **Backup Location**: Check the backup folder periodically to ensure it doesn’t consume too much space.
+- **Data Retention**: Files older than 30 days will be archived and deleted. Ensure this fits your data retention needs.
+
+## Disclaimer
+
+This script deletes files as part of the cleanup process. Use it carefully, especially in partitions with important data. It’s recommended to test the script in a safe environment before using it on critical systems.
