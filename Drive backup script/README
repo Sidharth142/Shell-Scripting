@@ -1,1 +1,32 @@
+### Backup and Cleanup Script
 
+**Purpose:**
+This script is used to create a backup of files stored in the `/oracle/db` folder and then clean up the original files in that folder if the backup is successful.
+
+**How It Works:**
+1. The script sets two folder locations:
+   - **Target Folder (`/oracle/db`)**: This is where the files are located that need to be backed up.
+   - **Backup Folder (`/drive/bkup`)**: This is where the backup file will be saved.
+
+2. **Backup Creation**:
+   - The script creates a compressed backup file with the current date in its name (e.g., `orabkup_12-11-24.tar`) in the backup folder.
+   - If the backup is created successfully, it will save the results in a file located at `/tmp/body.txt`.
+
+3. **Verification and Cleanup**:
+   - The script checks if the backup was successful.
+   - If successful, it counts the files to ensure that all files were backed up.
+   - If everything is correct, it deletes the original files in the target folder to free up space.
+   - A success email is sent to notify that the backup and cleanup were completed.
+
+4. **Failure Handling**:
+   - If there was an issue with creating the backup, the original files are not deleted.
+   - An email is sent to notify that the backup failed and no cleanup was done.
+
+**Notifications:**
+- The script sends an email about the outcome:
+   - **Success Email**: "Backup success and cleanup done"
+   - **Failure Email**: "Backup failed; cleanup not done"
+
+**Usage Notes:**
+- Ensure the script has permission to access the folders and send emails.
+- Check the backup folder regularly to ensure enough space is available for backups.
